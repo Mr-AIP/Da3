@@ -10,11 +10,11 @@ namespace emplo
     {
         private string _fio;
         private int _departament;
-        private decimal _selary;
+        private int _selary;
         private int _id;
         private static int count = 1;
 
-        public Employee(string fio, decimal salary, int departament)
+        public Employee(string fio, int salary, int departament)
         {
             _departament = departament;
             _selary = salary;
@@ -23,28 +23,28 @@ namespace emplo
 
         }
 
-        public string fio
+        public string Fio
         {
             get => _fio;
             set => _fio = value;
 
         }
 
-        public int Departament
+        public int Department
         {
             get => _departament;
             set => _departament = value;
 
         }
 
-        public decimal Salary
+        public int Salary
         {
             get => _selary;
             set => _selary = value;
 
         }
 
-
+        public int Id { get=> _id;}
 
     }
 }
