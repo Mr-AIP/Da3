@@ -17,85 +17,6 @@ List<Employee> people = new List<Employee>()
    new Employee("Fruit", 11200, 1),
    new Employee("Porry", 11200, 3),
 };
-
-void GetInfoAboutPeople(List<Employee> employee)
-{
-    foreach (Employee e in people)
-    {
-        Console.Write(e.Id + " ");
-        Console.Write(e.Fio + " ");
-        Console.Write(e.Salary + " ");
-        Console.Write(e.Department + "\n");
-    }
-}
-int GetSum(List<Employee> employee)
-{
-    int sum = 0;
-    foreach (Employee e in people)
-    {
-        sum += e.Salary;
-    }
-    return sum;
-}
-
-void GetMax(List<Employee> employee)
-{
-    Employee MaxSalary;
-    for (int i = 0; i < employee.Count; i++)
-    {
-        for (int j = i + 1; j < employee.Count; j++)
-        {
-            if (employee[i].Salary > employee[j].Salary)
-            {
-                MaxSalary = employee[i];
-                employee[i] = employee[j];
-                employee[j] = MaxSalary;
-            }
-        }
-    }
-    Console.Write($"{employee[employee.Count - 1].Id}" + " ");
-    Console.Write($"{employee[employee.Count - 1].Fio}" + " ");
-    Console.Write($"{employee[employee.Count - 1].Department}" + " ");
-    Console.Write($"{employee[employee.Count - 1].Salary}\n");
-
-
-}
-static void GetMin(List<Employee> employee)
-{
-    Employee MinSalary;
-    for (int i = 0; i < employee.Count; i++)
-    {
-        for (int j = i + 1; j < employee.Count; j++)
-        {
-            if (employee[i].Salary > employee[j].Salary)
-            {
-                MinSalary = employee[i];
-                employee[i] = employee[j];
-                employee[j] = MinSalary;
-            }
-        }
-    }
-    Console.Write($"{employee[0].Id}" + " ");
-    Console.Write($"{employee[0].Fio}" + " ");
-    Console.Write($"{employee[0].Department}" + " ");
-    Console.Write($"{employee[0].Salary}\n");
-
-
-
-
-}
-void GetAverage(List<Employee> employee)
-{
-
-    Console.WriteLine($"{GetSum(employee) / employee.Count}");
-}
-void GetFio(List<Employee> employee)
-{
-    foreach (Employee e in people)
-    {
-        Console.WriteLine(e.Fio);
-    }
-}
 bool loop = true;
 while (loop)
 {
@@ -105,7 +26,8 @@ while (loop)
       "4 - максимальная зарплата\n" +
       "5 - средняя зарплата\n" +
       "6 - фио\n" +
-      "7 - выйти");
+      "7 - индексация зарплаты \n"+
+      "8 - Выйти");
     try
     {
         switch (Convert.ToInt32(Console.ReadLine()))
@@ -116,25 +38,32 @@ while (loop)
                 break;
 
             case 2:
-                Console.WriteLine($"Затраты в месяц: {GetSum(people)}");
+                Console.WriteLine($"Затраты в месяц: {GetSum()}");
 
                 break;
 
             case 3:
-                GetMin(people);
+                GetMin();
                 break;
 
             case 4:
-                GetMax(people);
+                GetMax();
                 break;
             case 5:
-                GetAverage(people);
+                GetAverage();
                 break;
             case 6:
-                GetFio(people);
-
+                GetFio();
+                  break;
+                case 7:
+                Console.WriteLine("Ввведите процент индексации");
+                double number = Convert.ToDouble(Console.ReadLine());
+                Endexer(number);
                 break;
-            case 7:
+                case 8:
+                DeprtmentInfo();
+                break;
+            case 9:
                 loop = false;
                 break;
 
@@ -148,6 +77,97 @@ while (loop)
         Console.Clear();
 
     }
+
+    DeprtmentAvgInfo();
+    void GetInfoAboutPeople(List<Employee> employee)
+    {
+        foreach (Employee e in people)
+        {
+            Console.Write($"id={e.Id} ");
+            Console.Write(e.Fio + " ");
+            Console.Write(e.Salary + " ");
+            Console.Write(e.Department + "\n");
+        }
+    }
+    double GetSum()
+    {
+        double sum = 0;
+        foreach (Employee e in people)
+        {
+            sum += e.Salary;
+        }
+        return sum;
+    }
+
+    void GetMax()
+    {
+        
+        Console.WriteLine($"Человек с самой максимальной зарплатой {people.Max(e => e.Salary + " рублей: " + e.Fio)} ");
+    }
+     void GetMin()
+    {   
+         people.Min(e => e.Salary + "рублей: " + e.Fio);
+        
+    }
+    
+    void Endexer(double num)
+    {
+
+        foreach (Employee e in people)
+        {
+            e.Salary *= num;
+        }
+        foreach (Employee e in people)
+        {
+            Console.Write($"id={e.Id} ");
+            Console.Write(e.Fio + " ");
+            Console.Write(e.Salary + " ");
+            Console.Write(e.Department + "\n");
+
+        }
+
+    }
+    void GetAverage()
+    {
+        Console.WriteLine($"Среднее значение зарплат: {people.Average(e => e.Salary)}");
+
+    }
+    void GetFio()
+    {
+        foreach (Employee e in people)
+        {
+            Console.WriteLine(e.Fio);
+        }
+    }
+    void DeprtmentInfo()
+    {
+
+        Console.WriteLine("Введите номер отдела:");
+        int departmentID = int.Parse(Console.ReadLine());
+        foreach (var emp in people)
+        {
+            if (emp.Department == departmentID)
+            {
+                Console.WriteLine($"{emp.Fio} {emp.Salary}");
+            }
+        }
+    }
+
+    void DeprtmentAvgInfo()
+    {
+
+        Console.WriteLine("Введите номер отдела:");
+        int departmentID = int.Parse(Console.ReadLine());
+        foreach (var emp in people)
+        {
+            if (emp.Department == departmentID)
+            {
+                GetAverage();
+            }
+        }
+        s
+    }
+
 }
 
 

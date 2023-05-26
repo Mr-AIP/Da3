@@ -10,14 +10,14 @@ namespace emplo
     {
         private string _fio;
         private int _departament;
-        private int _selary;
+        private double _salary;
         private int _id;
-        private static int count = 1;
+        private static int count = 0;
 
-        public Employee(string fio, int salary, int departament)
+        public Employee(string fio, double salary, int departament)
         {
             _departament = departament;
-            _selary = salary;
+            _salary = salary;
             _fio = fio;
             _id = count++;
 
@@ -37,14 +37,15 @@ namespace emplo
 
         }
 
-        public int Salary
+        public double Salary
         {
-            get => _selary;
-            set => _selary = value;
+            get => _salary;
+            set => _salary = value;
 
         }
 
         public int Id { get=> _id;}
+
 
     }
 }
