@@ -28,3 +28,18 @@ C:\Users\Студент\Desktop\Da3-main\emplo\emplo\obj\Debug\net6.0\refint\emp
 C:\Users\Студент\Desktop\Da3-main\emplo\emplo\obj\Debug\net6.0\emplo.pdb
 C:\Users\Студент\Desktop\Da3-main\emplo\emplo\obj\Debug\net6.0\emplo.genruntimeconfig.cache
 C:\Users\Студент\Desktop\Da3-main\emplo\emplo\obj\Debug\net6.0\ref\emplo.dll
+C:\Users\bcec5\OneDrive\Рабочий стол\emplo\emplo\bin\Debug\net6.0\emplo.exe
+C:\Users\bcec5\OneDrive\Рабочий стол\emplo\emplo\bin\Debug\net6.0\emplo.deps.json
+C:\Users\bcec5\OneDrive\Рабочий стол\emplo\emplo\bin\Debug\net6.0\emplo.runtimeconfig.json
+C:\Users\bcec5\OneDrive\Рабочий стол\emplo\emplo\bin\Debug\net6.0\emplo.dll
+C:\Users\bcec5\OneDrive\Рабочий стол\emplo\emplo\bin\Debug\net6.0\emplo.pdb
+C:\Users\bcec5\OneDrive\Рабочий стол\emplo\emplo\obj\Debug\net6.0\emplo.csproj.AssemblyReference.cache
+C:\Users\bcec5\OneDrive\Рабочий стол\emplo\emplo\obj\Debug\net6.0\emplo.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\bcec5\OneDrive\Рабочий стол\emplo\emplo\obj\Debug\net6.0\emplo.AssemblyInfoInputs.cache
+C:\Users\bcec5\OneDrive\Рабочий стол\emplo\emplo\obj\Debug\net6.0\emplo.AssemblyInfo.cs
+C:\Users\bcec5\OneDrive\Рабочий стол\emplo\emplo\obj\Debug\net6.0\emplo.csproj.CoreCompileInputs.cache
+C:\Users\bcec5\OneDrive\Рабочий стол\emplo\emplo\obj\Debug\net6.0\emplo.dll
+C:\Users\bcec5\OneDrive\Рабочий стол\emplo\emplo\obj\Debug\net6.0\refint\emplo.dll
+C:\Users\bcec5\OneDrive\Рабочий стол\emplo\emplo\obj\Debug\net6.0\emplo.pdb
+C:\Users\bcec5\OneDrive\Рабочий стол\emplo\emplo\obj\Debug\net6.0\emplo.genruntimeconfig.cache
+C:\Users\bcec5\OneDrive\Рабочий стол\emplo\emplo\obj\Debug\net6.0\ref\emplo.dll
