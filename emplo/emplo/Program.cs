@@ -20,19 +20,20 @@ List<Employee> people = new List<Employee>()
 bool loop = true;
 while (loop)
 {
-    Console.WriteLine("1 - список всех сотрудников\n" +
+    Console.WriteLine("\n1 - список всех сотрудников\n" +
       "2 - сумма затрат на зарплату\n" +
       "3 - мимнимальная зарплата\n" +
       "4 - максимальная зарплата\n" +
-      "5 - средняя зарплата\n" +
-      "6 - фио\n" +
+      "5 - средняя зарплата по сотрудникам в колекции\n" +
+      "6 - вывод фио сотрудникв в колекции\n" +
       "7 - индексация зарплаты\n" +
       "8 - информация по отделам\n"+
-      "9 - минимальная зарплата среди сотруднико определенного отдела\n"+
-      "10- максимальная зарплата среди сотруднико определенного отдела\n" +
+      "9 - минимальная зарплата среди сотрудников определенного отдела\n"+
+      "10- максимальная зарплата среди сотрудников определенного отдела\n" +
       "11- индексация зарплаты по определенному отделу\n"+
-      "12 - вывод информацию о сотрудниках по условию зарплаты меньше числа\n"+
-      "13 - вывод информацию о сотрудниках по условию зарплаты больше или равно числу\n" +
+      "12- средняя зарплата среди сотрудиков отдела\n" +
+      "13 - метод по условию вывода зарплаты сотрудников меньше числа\n"+
+      "14 - метод по уловию вывода зарплаты сотрудников больше или равной числу \n"+
       "0 - выход");
     try
     {
@@ -64,7 +65,7 @@ while (loop)
             case 7:
                 Console.WriteLine("Ввведите процент индексации");
                 double number = Convert.ToDouble(Console.ReadLine());
-                Endexer(number);
+                Indexer(number);
                 break;
             case 8:
                 DeprtmentInfo();
@@ -79,12 +80,18 @@ while (loop)
                 IndexerDept();
                 break;
                 case 12:
-                double num =double.Parse(Console.ReadLine());
-               
+                DeprtmentAvgInfo();
+                              
                 break;
             case 13:
+                Console.WriteLine("Введите число");
                 double n =double.Parse(Console.ReadLine());
-                
+                method(n);
+                break;
+            case 14:
+                Console.WriteLine("Введите число");
+                double num2 = double.Parse(Console.ReadLine());
+                method2(num2);
                 break;
             case 0:
                 loop = false;
@@ -105,10 +112,8 @@ while (loop)
     {
         foreach (Employee e in people)
         {
-            Console.Write($"id={e.Id} ");
-            Console.Write(e.Fio + " ");
-            Console.Write(e.Salary + " ");
-            Console.Write(e.Department + "\n");
+            Console.Write($"id={e.Id}|{e.Fio}|{e.Salary}|{e.Department} ");
+           
         }
     }
     double GetSum()
@@ -128,11 +133,11 @@ while (loop)
     }
     void GetMin()
     {
-        people.Min(e => e.Salary + "рублей: " + e.Fio);
+        Console.WriteLine($"Человек с самой минимальной зарплатой {people.Min(e => e.Salary + " рублей: " + e.Fio)} ");
 
     }
 
-    void Endexer(double num)
+    void Indexer(double num)
     {
 
         foreach (Employee e in people)
@@ -141,10 +146,8 @@ while (loop)
         }
         foreach (Employee e in people)
         {
-            Console.Write($"id={e.Id} ");
-            Console.Write(e.Fio + " ");
-            Console.Write(e.Salary + " ");
-            Console.Write(e.Department + "\n");
+            Console.WriteLine($"{e.Fio}|{e.Salary}");
+           
 
         }
 
@@ -166,35 +169,35 @@ while (loop)
 
         Console.WriteLine("Введите номер отдела:");
         int departmentID = int.Parse(Console.ReadLine());
-        foreach (var emp in people)
+
+        var empInDpt = people.Where(p => p.Department == departmentID);
+        if (empInDpt.Any())
         {
-            if (emp.Department == departmentID)
+            foreach (var e in empInDpt)
             {
-                Console.WriteLine($"{emp.Fio} {emp.Salary}");
+                Console.WriteLine($"{e.Id}|{e.Fio}|{e.Salary}");
             }
+        }
+        else
+        {
+            Console.WriteLine($"Отдел {departmentID} не найден или не имеет сотрудников.");
         }
     }
 
     void DeprtmentAvgInfo()
     {
-
-        Console.WriteLine("Введите номер отдела:");
-        double sum = 0, avg;
+       
+       Console.WriteLine("Введите номер отдела");
+        int dptChoi = int.Parse(Console.ReadLine());
+        var empInDpt = people.Where(p => p.Department == dptChoi);
         
-        int departmentID = int.Parse(Console.ReadLine());
-        foreach (var emp in people)
-        {
-            if (emp.Department == departmentID)
-            {
-                foreach(var e in people)
-                {
-                    sum += e.Salary;
-                }
-                avg= sum /people.Count ;
-                Console.WriteLine(avg);
-            }
-        }
+        var avg = empInDpt.Average(e => e.Salary);
 
+        Console.WriteLine(avg);
+         
+        
+        
+        
     }
     void GetDepartamentSalaryMin()
     {
@@ -204,7 +207,7 @@ while (loop)
         if (employeesInDepartment.Any())
         {
             var employeeWithMinSalary = employeesInDepartment.OrderBy(e => e.Salary).First();
-            Console.WriteLine($" {employeeWithMinSalary.Fio} - {employeeWithMinSalary.Salary}");
+            Console.WriteLine($" {employeeWithMinSalary.Fio}|{employeeWithMinSalary.Salary}");
         }
         else
         {
@@ -214,10 +217,11 @@ while (loop)
     void GetDepartamentSalaryMax()
     {
         Console.WriteLine("Введите номер отдела"); double department = double.Parse(Console.ReadLine());
-        var employeesInDepartment = people.Where(e => e.Department == department); if (employeesInDepartment.Any())
+        var employeesInDepartment = people.Where(e => e.Department == department); 
+        if (employeesInDepartment.Any())
         {
             var employeeWithMaxSalary = employeesInDepartment.OrderBy(e => e.Salary).Last();
-            Console.WriteLine($" {employeeWithMaxSalary.Fio} - {employeeWithMaxSalary.Salary}");
+            Console.WriteLine($" {employeeWithMaxSalary.Fio}|{employeeWithMaxSalary.Salary}");
         }
         else
         {
@@ -235,15 +239,14 @@ while (loop)
         var employeesInDepartment = people.Where(e => e.Department == department);
         if (employeesInDepartment.Any())
         {
-            foreach( var e in people)
+            
+           foreach(var e in employeesInDepartment)
             {
                 e.Salary *= indexer;
-            }
-            foreach (var e in people)
-            {
-                Console.WriteLine(e.Salary);
+                Console.WriteLine($"{e.Salary}");
             }
 
+           
         }
         else
         {
@@ -251,9 +254,37 @@ while (loop)
         }
     }
 
-    
+    void method (double num)
+    {
+        var select = people.Where(p => p.Salary < num);
 
-    
+        foreach(var s in select)
+        {
+            Console.WriteLine($"{s.Id}|{s.Fio}|{s.Salary}");
+        }
+        
+            
+
+        
+
+
+    }
+    void method2(double num)
+    {
+        var select = people.Where(p => p.Salary >= num);
+
+        foreach (var s in select)
+        {
+            Console.WriteLine($"{s.Id}|{s.Fio}|{s.Salary}");
+        }
+
+
+
+
+
+
+    }
+
 }
 
 
